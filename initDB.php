@@ -12,7 +12,7 @@ $conn_string = "mysql:host=$host;dbname=$database;usename=$username;password=$pa
 
 try{
 	$db = new PDO($conn_string, $username, $password);
-	echo "Should have Connected";
+	echo "  Connected";
 }
 catch(Exception $e){
 	echo $e->getMessage();
