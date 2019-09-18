@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 //pull in config.php so we can access the variables from it
 require('config.php');
 echo "Loaded Host: " . $host;
-$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+$conn_string = "mysql:host=$host;dbname=$database;username=$username;password=$password;charset=utf8mb4";
 try{
 	$db = new PDO($conn_string, $username, $password);
 	echo "Connected";
