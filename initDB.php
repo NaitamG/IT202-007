@@ -1,9 +1,10 @@
+//web.njit.edu/~ng395/IT202-007/initDB.php
 <?php
 #turn error reporting on
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-//pull in config.php so we can access the variables from it
+
 require('config.php');
 echo "Loaded Host: " . $host;
 <<<<<<< HEAD
