@@ -20,10 +20,18 @@ try{
 		`pin` int default 0,
 		PRIMARY KEY (`id`)
 		) CHARACTER SET utf8 COLLATE utf8_general_ci";
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 	$stmt = $db->prepare($query);
+	print_r($stmt->errorInfo());
 	$r = $stmt->execute();
 	echo "<br>" . ($r>0?"Created table or already exists":"Failed to create table") . "<br>";
 	unset($r);
+	
+	//insert
+	$insert_query = "INSERT INTO `TestUsers`( `username`, `pin`) VALUES ('NaitamG', 4444)";
+	$stmt = $db->prepare($insert_query);
+	$r = $stmt->execute();
+	echo "<br>" . ($r>0?"Successfully Inserted":"Insert Failed") . "<br>";
 }
 catch(Exception $e){
 	echo $e->getMessage();
