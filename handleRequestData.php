@@ -1,17 +1,20 @@
 <?php
-	echo "<pre>" . var_dump($_GET, true) . "</pre";
+
+  $something = $_GET['age'];
+  echo $something;
+/*	echo "<pre>" . var_dump($_GET, true) . "</pre";
 	
   if(isset($_GET['name'])){
 		echo "<br>Hello, " . $_Get['name'] . "<br>";
-	}
+	}*/
+  /*
   if(isset($_GET['num1', 'num2'])){
 		echo "<br>" . $_GET['num1' + 'num2'] . " should be a number...";
 		echo <br>"but it might not be"<br>;
 	}
   else {
      echo <br>"write a number."<br>;
-  }
-  if(isset($_GET[] 
+  }*/
 	
 //TODO
 //handle addition of two or more parametes with proper number parsing
