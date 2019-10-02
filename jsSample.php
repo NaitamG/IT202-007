@@ -1,4 +1,23 @@
+//Homework assignment
 <html>
+<head>
+	<script>
+	function pageLoaded(){
+		var para = document.createElement("div");
+    var node = document.createTextNode("added new element");
+    para.appendChild(node);
+
+	}
+	</script>
+</head>
+<body onload="pageLoaded();">
+	<p id="myPara">Just showing that we loaded something...</p>
+</body>
+</html>
+
+
+//what we did in class
+/*<html>
 <head>
 	<script>
 	function mySamples(){
@@ -43,3 +62,4 @@ if(isset($_GET['name'])) {
 }
 ?>
 
+<*/
