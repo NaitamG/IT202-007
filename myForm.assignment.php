@@ -13,21 +13,22 @@ function getName(){
 <head></head>
 <script>
 
-var returnStatement = "";
-var check = function() {
-  if (document.getElementById('password').value ==
-    document.getElementById('confirm_password').value) {
+function check() {
+  if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
     document.getElementById('message').style.color = 'green';
     document.getElementById('message').innerHTML = 'Matching Password';
-  } else {
+    return true;
+  } 
+  else {
     document.getElementById('message').style.color = 'red';
     document.getElementById('message').innerHTML = 'Not Matching';
+    return false;
   }
 }
 </script>
 <body><?php getName();?>
 
-<form method="GET" action="#">
+<form method="GET" action="#" onsubmit="return check();">
 <label>Name :
   <input name="name" type="text" placeholder="Enter your name"/>
   <br>
@@ -50,18 +51,8 @@ var check = function() {
 </html>
 
 <?php
-    $msg = "";
-    if(isset($_POST['submit'])) {
-      $password = $_POST['password'];
-      $confirm_password = $_POST['confirm_password'];
-      
-      if ($password != $confirm_password){
-        $msg = "Please Match Your Passwords!";
-      }
-    echo "
-      <script type=\"text/javascript\">
-        var e = document.getElementById('testForm'); e.action='test.php'; e.submit();
-      </script>";
-     }
+  if(isset($_GET)){
+	  echo "<br><pre>" . var_export($_GET, true) . "</pre><br>";
+  }
 ?>
 
