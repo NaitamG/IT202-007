@@ -18,12 +18,13 @@ function getName(){
 <lable for="No">No</lable>
 <input type="radio" name="radio" value="No"/>
 <!-- this is a comment -->
+
 <select name="dropdown">
   <option value="1">One</option>
   <option value="2">Two</option>
   <option value="3">Three</option>
-  
 </select>
+
 <input type="checkbox" values="check"/>
 <textarea name="text'></textarea>
 <inut type="data" name="date"/>
