@@ -3,6 +3,7 @@
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+//This validation is for the server
 function checkPasswords(){
 	if(isset($_POST['password']) && isset($_POST['confirm'])){
 		if($_POST['password'] == $_POST['confirm']){
@@ -17,6 +18,7 @@ function checkPasswords(){
 <html>
 <head>
 <script>
+//This validation is for the client/the form
 function validate(){
 	var form = document.forms[0];
 	var password = form.password.value;
@@ -50,14 +52,16 @@ function validate(){
 		ev.innerText = "Please enter a valid email address";
 		succeeded = false;
 	}
-	/*
-	add validation for a proper selection from dropdown.
-	First element should be "Select One", and it should require that
-	some other value is selected in order to proceed
-	*/
-	return succeeded;	
+ 
+  var sel = document.getElementById("dd");
+  if (sel.value == "") {
+  alert("Please select an option!");
+  return false;
+  }
+  return true;
 }
 </script>
+
 <style>
 input { border: 1px solid black; }
 .error {border: 1px solid red;}
@@ -76,7 +80,8 @@ input { border: 1px solid black; }
 <input type="password" name="confirm" placeholder="Re-Enter password"/>
 <span style="display:none;" id="validation.password"></span>
 
-<select name="player position">
+<select id="dd">
+  <option value=""></option>
   <option value="GoalKeeper">GoalKeeper</option>
   <option value="Right Fullback">Right Fullback</option>
   <option value="Left Fullback">Left Fullback</option>
@@ -90,7 +95,7 @@ input { border: 1px solid black; }
   <option value="Left Winger">Left Winger</option>
 </select>
 
-<input type="submit" value="Try it"/>
+<input type="submit" value="Try it" onclick="return validate()"/>
 </form>
 </div>
 </body>
