@@ -20,9 +20,11 @@ function checkPasswords(){
 <script>
 //This validation is for the client/the form
 function validate(){
-	var form = document.forms[0];
+  var form = document.forms[0];
+  //This is for pass conf
 	var password = form.password.value;
 	var conf = form.confirm.value;
+  
 	console.log(password);
 	console.log(conf);
 	let pv = document.getElementById("validation.password");
@@ -40,6 +42,8 @@ function validate(){
 		//form.confirm.style = "border: 1px solid red;";
 		succeeded = false;
 	}
+
+  //validation of emails
 	var email = form.email.value;
 	var ev = document.getElementById("validation.email");
 	//this won't show if type="email" since browser handles
@@ -52,13 +56,27 @@ function validate(){
 		ev.innerText = "Please enter a valid email address";
 		succeeded = false;
 	}
- 
+  
+  //validation for the dropdown
   var sel = document.getElementById("dd");
   if (sel.value == "") {
   alert("Please select an option!");
   return false;
   }
   return true;
+}
+
+function checkIfEmpty() {
+  //Validation for empty email
+  if (document.getElementById('email').value == "" || document.getElementById('emailconfirm').value == ""){
+    alert('Please enter an email address'); 
+    return false; 
+  }
+  //Validation for empty password
+  if (document.getElementById('password').value == ""|| document.getElementById('confirm').value == ""){
+    alert('Please enter a password');  
+    return false; 
+  }
 }
 </script>
 
@@ -67,19 +85,22 @@ input { border: 1px solid black; }
 .error {border: 1px solid red;}
 .noerror {border: 1px solid black;}
 </style>
+
 </head>
 <body>
 <div style="margin-left: 50%; margin-right:50%;">
-<form method="POST" action="#" onsubmit="return validate();">
+<form method="POST" action="#" onsubmit="return checkIfEmpty() ;"> /*previously had validate();">*/
 <input name="name" type="text" placeholder="Enter your name"/>
 
-<input name="email" type="email" placeholder="name@example.com"/>
+<input name="email" type="text" id="email" placeholder="name@example.com"/>
+<input name="emailconfirm" type="text" id="emailconfirm" placeholder="Re-Enter email"/>
 <span id="validation.email" style="display:none;"></span>
 
-<input type="password" name="password" placeholder="Enter password"/>
-<input type="password" name="confirm" placeholder="Re-Enter password"/>
+<input type="password" name="password" id="password" placeholder="Enter password"/>
+<input type="password" name="confirm" id="confirm" placeholder="Re-Enter password"/>
 <span style="display:none;" id="validation.password"></span>
 
+/*Dropdown element relating to my project
 <select id="dd">
   <option value=""></option>
   <option value="GoalKeeper">GoalKeeper</option>
@@ -93,7 +114,7 @@ input { border: 1px solid black; }
   <option value="Striker">Striker</option>
   <option value="Attacking Midfielder/Playmaker">Attacking Midfielder/Playmaker</option>
   <option value="Left Winger">Left Winger</option>
-</select>
+</select>*/
 
 <input type="submit" value="Try it" onclick="return validate()"/>
 </form>
