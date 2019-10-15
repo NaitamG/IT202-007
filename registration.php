@@ -19,6 +19,9 @@ function checkPasswords(){
 <head>
 <script>
 //This validation is for the client/the form
+function isEmpty() {
+  if(
+}
 function validate(){
   var form = document.forms[0];
   //This is for pass conf
@@ -89,7 +92,7 @@ input { border: 1px solid black; }
 </head>
 <body>
 <div style="margin-left: 50%; margin-right:50%;">
-<form method="POST" action="#" onsubmit="return checkIfEmpty() ;"> /*previously had validate();">*/
+<form method="POST" action="#" onsubmit="return checkIfEmpty();">
 <input name="name" type="text" placeholder="Enter your name"/>
 
 <input name="email" type="text" id="email" placeholder="name@example.com"/>
@@ -100,7 +103,7 @@ input { border: 1px solid black; }
 <input type="password" name="confirm" id="confirm" placeholder="Re-Enter password"/>
 <span style="display:none;" id="validation.password"></span>
 
-/*Dropdown element relating to my project
+
 <select id="dd">
   <option value=""></option>
   <option value="GoalKeeper">GoalKeeper</option>
@@ -114,9 +117,9 @@ input { border: 1px solid black; }
   <option value="Striker">Striker</option>
   <option value="Attacking Midfielder/Playmaker">Attacking Midfielder/Playmaker</option>
   <option value="Left Winger">Left Winger</option>
-</select>*/
+</select>
 
-<input type="submit" value="Try it" onclick="return validate()"/>
+<input type="submit" value="Try it" onclick="return validate();"/>
 </form>
 </div>
 </body>
