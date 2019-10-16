@@ -8,15 +8,15 @@
 			var page = params.get('page');
 			var ele = document.getElementById(page);
 			if(ele){
-				let home = document.getElementById('Home');
-				let about = document.getElementById('About');
+				let home = document.getElementById('home');
+				let about = document.getElementById('about');
 				home.style.display="none";
 				about.style.display = "none";
 				ele.style.display = "block";
 			}
 		}
 		else{
-			let home = document.getElementById('Home');
+			let home = document.getElementById('home');
 			home.style.display = "block";
 		}
 	}
@@ -25,15 +25,28 @@
 <body onload="queryParam();">
 	<header>
 		<nav>
-			<a href="#">Home</a> |
-      <a href="about.html">About</a> |
+			<a href="?page=home">Home</a> |
+      <a href="?page=about">About</a> |
 		</nav>
 	</header>
 	<div id="home">
 		This is home
 	</div>
-	<div id="about">
-		<!-- About page is in about.html file-->
+	<div id="about" style="display:none;">
+		<head>Welcome to the About Page!<head/>
+      <header>This is the start of the about page</header>
+        <section>
+	        <article>
+            <section>
+              <figure>
+			        <figcaption>This is a llamma that resides in Andes Mountain in Argentina. <a href="http://custom-gwent.com/cardsBg/5bb6a53e49049467e0621c7437488f60.jpeg">image</a></figcaption>
+			        </figure>
+            </section>
+        <section>This is another section</section>
+        <section>And another one</section>
+	</article>
+</section>
+<footer>This is the end of the about page</footer>
 <footer></footer>
 	</div>
 	<footer></footer>
