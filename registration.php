@@ -45,7 +45,6 @@ function validate(){
 		//form.confirm.style = "border: 1px solid red;";
 		succeeded = false;
 	}
-
   //validation of emails
 	var email = form.email.value;
 	var ev = document.getElementById("validation.email");
@@ -68,7 +67,6 @@ function validate(){
   }
   return true;
 }
-
 function checkIfEmpty() {
   //Validation for empty email
   if (document.getElementById('email').value == "" || document.getElementById('emailconfirm').value == ""){
@@ -82,28 +80,22 @@ function checkIfEmpty() {
   }
 }
 </script>
-
 <style>
 input { border: 1px solid black; }
 .error {border: 1px solid red;}
 .noerror {border: 1px solid black;}
 </style>
-
 </head>
 <body>
 <div style="margin-left: 50%; margin-right:50%;">
 <form method="POST" action="#" onsubmit="return checkIfEmpty();">
 <input name="name" type="text" placeholder="Enter your name"/>
-
 <input name="email" type="text" id="email" placeholder="name@example.com"/>
 <input name="emailconfirm" type="text" id="emailconfirm" placeholder="Re-Enter email"/>
 <span id="validation.email" style="display:none;"></span>
-
 <input type="password" name="password" id="password" placeholder="Enter password"/>
 <input type="password" name="confirm" id="confirm" placeholder="Re-Enter password"/>
 <span style="display:none;" id="validation.password"></span>
-
-
 <select id="dd">
   <option value=""></option>
   <option value="GoalKeeper">GoalKeeper</option>
@@ -118,7 +110,6 @@ input { border: 1px solid black; }
   <option value="Attacking Midfielder/Playmaker">Attacking Midfielder/Playmaker</option>
   <option value="Left Winger">Left Winger</option>
 </select>
-
 <input type="submit" value="Try it" onclick="return validate();"/>
 </form>
 </div>
