@@ -12,6 +12,13 @@ var ball;
 var paddleWidth = 25;
 var paddleHeight = 100;
 var ballSize = 10;
+
+//Amendment 2: Make the ball a circle
+var context = canvas.getContext('2d');
+var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
+var radius = 70;
+
 var ballSpeed = 2;
 var paddleSpeed = 2;
 var drawables = [];
@@ -20,12 +27,6 @@ var W = 87;
 var S = 83;
 var UP = 38;
 var DOWN = 40;
-
-//Amemdment 2: Let user pick ball speed
-
-//Amendment 3: Let user pick the ball color
-
-//Amendment 4: Show rally count on screen
 // Keep track of pressed keys
 var keys = {
     W: false,
@@ -37,21 +38,12 @@ var keys = {
 var leftScore = 0;
 var rightScore = 0;
 function init() {
-
-//Amendment 1: Let user pick color of the paddle
-document.addEventListener('keydown', function(e) {
-    if(e.keyCode == 89) {
-        ball = makeRect(0, 0, ballSize, ballSize, ballSpeed, '#FFD700'); //Yellow option
-    }
-    else if(e.keyCode == 71) {
-        ball = makeRect(0, 0, ballSize, ballSize, ballSpeed, '#7FFF00'); //Green option
-    }
-});
     canvas = document.getElementById("board");
     if (canvas.getContext) {
         context = canvas.getContext("2d");
         leftPaddle = makeRect(25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#BC0000');
         rightPaddle = makeRect(canvas.width - paddleWidth - 25, canvas.height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, 5, '#0000BC');
+        ball = makeRect(0, 0, ballSize, ballSize, ballSpeed, '#000000');
         drawables.push(leftPaddle);
         drawables.push(rightPaddle);
         drawables.push(ball);
@@ -63,8 +55,15 @@ document.addEventListener('keydown', function(e) {
     }
 }
 function resetBall() {
-    ball.x = canvas.width / 2 - ball.w / 2;
-    ball.y = canvas.height / 2 - ball.w / 2;
+    //Part of Amendment 2
+    context.beginPath();
+    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    context.fillStyle = 'green';
+    context.fill();
+    context.lineWidth = 5;
+    context.strokeStyle = '#003300';
+    context.stroke();
+    
     // Modify the ball object to have two speed properties, one for X and one for Y
     ball.sX = ballSpeed;
     ball.sY = ballSpeed / 2;
@@ -151,6 +150,7 @@ function makeRect(x, y, width, height, speed, color) {
         }
     };
 }
+
 function doAI() {
     if (ball.x >= canvas.width * .6) {
         let paddleHalf = paddleHeight / 2;
@@ -161,22 +161,19 @@ function doAI() {
         }
     }
     clampToCanvas(rightPaddle);
-}
-function movePaddle() {
-    if (keys.W) {
-        leftPaddle.y -= leftPaddle.s;
-    }
-    if (keys.S) {
-        leftPaddle.y += leftPaddle.s;
-    }
-    if (keys.UP) {
-        leftPaddle.y -= leftPaddle.s;
-    }
-    if (keys.DOWN) {
-        leftPaddle.y += leftPaddle.s;
+    
+    //Amendment 1: Making the second paddle AI
+    if (ball.x <= canvas.width * .4) {
+        let paddleHalf = paddleHeight / 2;
+        if (ball.y > leftPaddle.y + paddleHalf) {
+            leftPaddle.y += leftPaddle.s;
+        } else if (ball.y < leftPaddle.y) {
+            leftPaddle.y -= leftPaddle.s;
+        }
     }
     clampToCanvas(leftPaddle);
 }
+
 function clampToCanvas(paddle) {
     if (paddle.y < 0) {
         paddle.y = 0;
@@ -185,6 +182,7 @@ function clampToCanvas(paddle) {
         paddle.y = canvas.height - paddle.h;
     }
 }
+
 function moveBall() {
     // Move the ball
     ball.x += ball.sX;
