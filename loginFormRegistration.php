@@ -23,11 +23,12 @@
 <?php
 //$r = $stmt->execute(array(":username"=> "$user"));
 //echo "<pre>" . var_export($results, true) . "</pre>"; 
-$user = $_POST['username'];
-$pass = $_POST['password'];
   
 if(isset($_POST['username']) && isset($_POST['password'])){
   require('config.php');
+  $user = $_POST['username'];
+  $pass = $_POST['password'];
+  
   $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
   $db = new PDO($conn_string, $username, $password);
   $select_query = " select * from `LoginForm` where `Username` = ':username' and `Password` = ':password'"
