@@ -4,12 +4,9 @@
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 require('config.php');
 echo $host;
-
 $conn_string = "mysql:host=$host;dbname=$database;usename=$username;password=$password;charset=utf8mb4";
-
 try{
 	foreach(glob("sql/*.sql") as $filename){
 		//echo $filename;
@@ -31,7 +28,6 @@ try{
 		}
 		echo "<br>$key result: " . ($result>0?"Success":"Fail") . "<br>";
 	}
-
 	//commented out the previous code
 	/*$db = new PDO($conn_string, $username, $password);
 	echo "  Connected";
@@ -55,7 +51,6 @@ try{
 	$r = $stmt->execute();
 	echo "<br>" . ($r>0?"Successfully Inserted":"Insert Failed") . "<br>";*/
 }
-
 catch(Exception $e){
 	echo $e->getMessage();
 	exit("Something went wrong");
