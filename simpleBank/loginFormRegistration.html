@@ -4,7 +4,9 @@
   <header>
 		<div class="container">
         <!-- This is the main header -->    
-		<h2>Simple Bank</h2>
+		<h2>
+      Simple Bank<br>Login Page  
+    </h2>
     </div>
    </header>
    
@@ -14,8 +16,9 @@
        margin: 8px;
        font-family: Arial;
        font-size: 16px;
-       background-color: #dfe4ea;
+       background-color: #c8c3cc;
      }
+     
      h2
      {
        text-align: center;
@@ -30,16 +33,65 @@
        margin-inline-end: 0px;
        font-weight: bold;
      }
-
+     
+     input[type=submit]
+     {
+       margin: 10px 485px;
+       text-align: center;
+       position: relative;
+       width: 300px;
+       background-color: #96ceb4;
+       font-size: 15px;
+       color: black;
+       padding: 14px 20px;
+       border: none;
+       border-radius:30px;
+       cursor: pointer;
+     }
+     
+     input[type=reset]
+     {
+       margin: 0 auto;
+       text-align: center;
+       position: relative;
+       width: 300px;
+       background-color: #96ceb4;
+       font-size: 15px;
+       color: black;
+       padding: 14px 20px;
+       margin: 10px 485px;
+       border: none;
+       border-radius:30px;
+       cursor: pointer;
+     }
+     
+     input[type=text] {
+       width: 20%;
+       padding: 12px 20px;
+       margin: 5px 510px;
+       display: inline-block;
+       border: 1px solid #ccc;
+       border-radius: 10px;
+       box-sizing: border-box;
+     }
+     
+     input[type=password] {
+       width: 20%;
+       padding: 12px 20px;
+       margin: 5px 510px;
+       display: inline-block;
+       border: 1px solid #ccc;
+       border-radius: 10px;
+       box-sizing: border-box;
+     }
+    </style>
 <!-- Login Form starts here --> 
 <form action="myLoginForm.php" method="post">
   <p>
-    <label> Username: </label>
 	  <input type="text" name = "username" placeholder="Type your Uername"/>
   </p>
   
   <p>
-    <label> Password: </label>
 	  <input type="password" name="password" placeholder="Type your Password"/>
   </p>
   
