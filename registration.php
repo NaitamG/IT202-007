@@ -3,7 +3,6 @@
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-//This validation is for the server
 function checkPasswords(){
 	if(isset($_POST['password']) && isset($_POST['confirm'])){
 		if($_POST['password'] == $_POST['confirm']){
@@ -18,16 +17,10 @@ function checkPasswords(){
 <html>
 <head>
 <script>
-//This validation is for the client/the form
-function isEmpty() {
-  if(
-}
 function validate(){
-  var form = document.forms[0];
-  //This is for pass conf
+	var form = document.forms[0];
 	var password = form.password.value;
 	var conf = form.confirm.value;
-  
 	console.log(password);
 	console.log(conf);
 	let pv = document.getElementById("validation.password");
@@ -40,16 +33,12 @@ function validate(){
 	else{
 		pv.style.display = "block";
 		pv.innerText = "Passwords don't match";
-		//form.confirm.focus();
 		form.confirm.className = "error";
-		//form.confirm.style = "border: 1px solid red;";
 		succeeded = false;
 	}
-  //validation of emails
 	var email = form.email.value;
 	var ev = document.getElementById("validation.email");
-	//this won't show if type="email" since browser handles
-	//better validation. Change to type="text" to test
+
 	if(email.indexOf('@') > -1){
 		ev.style.display = "none";
 	}
@@ -58,26 +47,16 @@ function validate(){
 		ev.innerText = "Please enter a valid email address";
 		succeeded = false;
 	}
-  
-  //validation for the dropdown
-  var sel = document.getElementById("dd");
-  if (sel.value == "") {
-  alert("Please select an option!");
-  return false;
-  }
-  return true;
-}
-function checkIfEmpty() {
-  //Validation for empty email
-  if (document.getElementById('email').value == "" || document.getElementById('emailconfirm').value == ""){
-    alert('Please enter an email address'); 
-    return false; 
-  }
-  //Validation for empty password
-  if (document.getElementById('password').value == ""|| document.getElementById('confirm').value == ""){
-    alert('Please enter a password');  
-    return false; 
-  }
+	debugger;
+
+	var sel = form.dd;
+
+	if(sel.selectedIndex == 0){
+		alert("Missing Information");
+		succeeded = false;
+	}
+	console.log(sel.options[sel.selectedIndex].value);
+	return succeeded;	
 }
 </script>
 <style>
@@ -86,18 +65,21 @@ input { border: 1px solid black; }
 .noerror {border: 1px solid black;}
 </style>
 </head>
+
 <body>
 <div style="margin-left: 50%; margin-right:50%;">
-<form method="POST" action="#" onsubmit="return checkIfEmpty();">
+<form method="POST" action="#" onsubmit="return validate();">
 <input name="name" type="text" placeholder="Enter your name"/>
-<input name="email" type="text" id="email" placeholder="name@example.com"/>
-<input name="emailconfirm" type="text" id="emailconfirm" placeholder="Re-Enter email"/>
+
+<input name="email" type="email" placeholder="name@example.com"/>
 <span id="validation.email" style="display:none;"></span>
-<input type="password" name="password" id="password" placeholder="Enter password"/>
-<input type="password" name="confirm" id="confirm" placeholder="Re-Enter password"/>
+
+<input type="password" name="password" placeholder="Enter password"/>
+<input type="password" name="confirm" placeholder="Re-Enter password"/>
 <span style="display:none;" id="validation.password"></span>
-<select id="dd">
-  <option value=""></option>
+
+<select name="dd" id="mySelectId">
+  <option value="">None</option>
   <option value="GoalKeeper">GoalKeeper</option>
   <option value="Right Fullback">Right Fullback</option>
   <option value="Left Fullback">Left Fullback</option>
@@ -110,7 +92,8 @@ input { border: 1px solid black; }
   <option value="Attacking Midfielder/Playmaker">Attacking Midfielder/Playmaker</option>
   <option value="Left Winger">Left Winger</option>
 </select>
-<input type="submit" value="Try it" onclick="return validate();"/>
+
+<input type="submit" value="Try it"/>
 </form>
 </div>
 </body>
