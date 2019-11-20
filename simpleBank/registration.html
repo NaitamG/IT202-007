@@ -7,7 +7,7 @@
 	  var password = form.password.value;
 	  var conf = form.confirm.value;
 	  console.log(password);
-	  console.log(conf);
+	  console.log(cof);
 	  let pv = document.getElementById("validation.password");
 	  let succeeded = true;
 	  if(password == conf){
@@ -21,7 +21,8 @@
 		  form.confirm.className = "error";
 		  succeeded = false;
 	  }
-	  var email = form.email.value;
+	  
+    var email = form.email.value;
 	  var ev = document.getElementById("validation.email");
 
 	  if(email.indexOf('@') > -1){
@@ -33,7 +34,7 @@
 		  succeeded = false;
 	  }
 	  debugger;
-
+  }
 </script>
 </head>
 
@@ -44,73 +45,75 @@
   </h2>
 </div>
 <style>
-    body
-     {
-       margin: 8px;
-       font-family: Arial;
-       font-size: 16px;
-       background-color: #c8c3cc;
-     }
+  body
+    {
+      margin: 8px;
+      font-family: Arial;
+      font-size: 16px;
+      background-color: #c8c3cc;
+    }
+  h2
+    {
+      text-align: center;
+      color: #000;
+      font-family: verdana;
+      font-size: 40px;
+      display: block;
+      font-size: 2em;
+      margin-block-start: 2em;
+      margin-block-end: 3em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      font-weight: bold;
+    }
      
-    h2
-     {
-       text-align: center;
-       color: #000;
-       font-family: verdana;
-       font-size: 40px;
-       display: block;
-       font-size: 2em;
-       margin-block-start: 2em;
-       margin-block-end: 3em;
-       margin-inline-start: 0px;
-       margin-inline-end: 0px;
-       font-weight: bold;
-     }
+  input[type=submit]
+    {
+      margin: 10px 480px;
+      text-align: center;
+      position: relative;
+      width: 300px;
+      background-color: #96ceb4;
+      font-size: 15px;
+      color: black;
+      padding: 14px 20px;
+      border: none;
+      border-radius:30px;
+      cursor: pointer;
+    }
      
-    input[type=submit]
-     {
-       margin: 10px 480px;
-       text-align: center;
-       position: relative;
-       width: 300px;
-       background-color: #96ceb4;
-       font-size: 15px;
-       color: black;
-       padding: 14px 20px;
-       border: none;
-       border-radius:30px;
-       cursor: pointer;
-     }
+  input[type=text] 
+    {
+      width: 20%;
+      padding: 12px 20px;
+      margin: 5px 500px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
      
-    input[type=text] {
-       width: 20%;
-       padding: 12px 20px;
-       margin: 5px 500px;
-       display: inline-block;
-       border: 1px solid #ccc;
-       border-radius: 10px;
-       box-sizing: border-box;
-     }
+  input[type=password] 
+    {
+      width: 20%;
+      padding: 12px 20px;
+      margin: 5px 500px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
      
-     input[type=password] {
-       width: 20%;
-       padding: 12px 20px;
-       margin: 5px 500px;
-       display: inline-block;
-       border: 1px solid #ccc;
-       border-radius: 10px;
-       box-sizing: border-box;
-     }
-     
-     input[type=email] {
-       width: 20%;
-       padding: 12px 20px;
-       margin: 5px 500px;
-       display: inline-block;
-       border: 1px solid #ccc;
-       border-radius: 10px;
-       box-sizing: border-box;
-     }  
+  input[type=email] 
+    {
+      width: 20%;
+      padding: 12px 20px;
+      margin: 5px 500px;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }  
 </style>
 
 <form method="POST" action="validateRegistration.php" onsubmit="return validate();">
@@ -132,3 +135,4 @@
 <a href="loginFormRegistration.html">Put it in reverse Terry</a>
 </body>
 </html>
+
