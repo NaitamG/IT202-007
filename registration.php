@@ -16,7 +16,8 @@ function checkPasswords(){
 ?>
 <html>
 <head>
-<script>
+<script>  
+
 function validate(){
 	var form = document.forms[0];
 	var password = form.password.value;
@@ -56,6 +57,7 @@ function validate(){
 	return succeeded;	
 }
 </script>
+
 <style>
 input { border: 1px solid black; }
 .error {border: 1px solid red;}
