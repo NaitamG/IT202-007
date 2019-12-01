@@ -4,42 +4,42 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if (isset($_POST['username']) && isset($_POST['passwrod'])) {
-  try {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
+	 try {
+    		$user = $_POST['username'];
+    		$pass = $_POST['password'];
     
-    require('config.php');
+    		require('config.php');
     
-    $connection_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
-    $db = new PDO ($connection_string, $username, $password);
+    		$connection_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
+    		$db = new PDO ($connection_string, $username, $password);
     
-    $select_query = "SELECT * FROM `SimpleBank` WHERE username = :username";
-    $stmt = $db->prepare($select_query);
-    $r = $stmt->execute(array(":username"=> $user));
-    $results = $stmt->fetch(PDO::FETCH_ASSOC);
-    echo $stmt->errorInfo();
+    		$select_query = "SELECT * FROM `SimpleBank` WHERE username = :username";
+    		$stmt = $db->prepare($select_query);
+    		$r = $stmt->execute(array(":username"=> $user));
+    		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+    		echo $stmt->errorInfo();
     
-    if ($results && count($results) > 0) {
-      if (password_verify($pass, $results['pin'])) {
-        echo "Password verified.";
-        $user = array("id"=> $results['id'], "name"=> $results['username']);
-        $_SESSION['user'] = $user;
-        echo "<pre>" . var_export($user, true) . "</pre>";
-        header("Location: loggedIn.html");
-      }
-      else {
-        echo "Invalid password";
-      }
-    }
+    		if ($results && count($results) > 0) {
+      			if (password_verify($pass, $results['pin'])) {
+        			echo "Password verified.";
+       				$user = array("id"=> $results['id'], "name"=> $results['username']);
+        			$_SESSION['user'] = $user;
+        			echo "<pre>" . var_export($user, true) . "</pre>";
+        			header("Location: loggedIn.html");
+      			}
+      			else {
+        			echo "Invalid password";
+      			}
+    		}
     
-    else {
-      echo "User does not exist";
-    }
-  }
-  catch(Exception $e) {
-    echo $e->getMessage();
-    exit("It doesn't work");
-  }
+    		else {
+      			echo "User does not exist, need to create an account first!";
+    		}
+  	}
+  	catch(Exception $e) {
+    		echo $e->getMessage();
+    		exit("It doesn't work");
+  	}
 }
 ?>
 

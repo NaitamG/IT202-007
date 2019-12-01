@@ -132,7 +132,7 @@ function checkPasswords(){
     try {
       $hash = password_hash($pass, PASSWORD_BCRYPT);
       
-      include("config.php");
+      require("config.php");
       $connection_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
       $db = new PDO ($connection_string, $username, $password);
 
