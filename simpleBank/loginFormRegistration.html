@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 <body>
   <header>
@@ -91,23 +91,19 @@
     </style>
     
 <!-- Login Form starts here --> 
-<form action="myLoginForm.php" method="post">
-  <p>
-	  <input type="text" name = "username" placeholder="Type your Username"/>
-  </p>
+  <form action="myLoginForm.php" method="post">
   
-  <p>
-	  <input type="password" name="password" placeholder="Type your Password"/>
-  </p>
+  <p><input type="text" name = "username" placeholder="Type your Username"/></p>
+  
+  <p><input type="password" name="password" placeholder="Type your Password"/></p>
   
     <input type="submit" name="submit"  value="Login"/>
     <input type="reset" value="Clear form"/>
-</form>
-<a href="registration.html">Create a new account</a></div><style="text-align:center;"></style>
-
+  </form>
+  <a href="registration.html">Create a new account</a></div><style="text-align:center;"></style>
+  
 </body>
 </html>
 
 
-
-
+<?php checkPasswords();?>
