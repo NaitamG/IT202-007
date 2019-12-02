@@ -3,7 +3,10 @@ ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-if (isset($_POST['username']) && isset($_POST['passwrod'])) {
+
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+
 	 try {
     		$user = $_POST['username'];
     		$pass = $_POST['password'];
@@ -18,14 +21,17 @@ if (isset($_POST['username']) && isset($_POST['passwrod'])) {
     		$r = $stmt->execute(array(":username"=> $user));
     		$results = $stmt->fetch(PDO::FETCH_ASSOC);
     		echo $stmt->errorInfo();
+       
     
     		if ($results && count($results) > 0) {
+            
       			if (password_verify($pass, $results['pin'])) {
         			echo "Password verified.";
        				$user = array("id"=> $results['id'], "name"=> $results['username']);
         			$_SESSION['user'] = $user;
         			echo "<pre>" . var_export($user, true) . "</pre>";
         			header("Location: loggedIn.html");
+              die();
       			}
       			else {
         			echo "Invalid password";
@@ -129,13 +135,13 @@ if (isset($_POST['username']) && isset($_POST['passwrod'])) {
        box-sizing: border-box;
      }
      
-     a
+     
      {
        text-align:center;
      }
     </style>
     
-  <form action="" method="post">
+  <form action="myLoginForm.php" method="post">
     <p><input type="text" name = "username" placeholder="Type your Username"/></p>
   
     <p><input type="password" name="password" placeholder="Type your Password"/></p>
