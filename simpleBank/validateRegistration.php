@@ -112,7 +112,7 @@ function checkPasswords(){
 
     <input type="submit" value="Try it"/>
   </form>
-  <a href="myLoginForm.php">Back to Login Page</a>
+  <a href="myLoginForm.php">Back</a>
 </body>
 </html>
 

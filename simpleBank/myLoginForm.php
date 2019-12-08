@@ -30,7 +30,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
        				$user = array("id"=> $results['id'], "name"=> $results['username']);
         			$_SESSION['user'] = $user;
         			echo "<pre>" . var_export($user, true) . "</pre>";
-        			header("Location: loggedIn.html");
+        			header("Location: tansactions.php");
               die();
       			}
       			else {
