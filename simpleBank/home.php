@@ -18,10 +18,10 @@ include_once("helpers/functions.php");
 <div class="content">
         <h2>Choose your transaction action</h2>
         <ol>
+                <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=newAccount">Create New Account</a></li>
                 <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=deposit">Deposit Money</a></li>
                 <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=withdraw">Withdraw Money</a></li>
                 <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=transfer">Transfer Money</a></li>
-                <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=newAccount">Create Account</a></li>
         </ol>
     </div>
     

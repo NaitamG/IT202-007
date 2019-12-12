@@ -14,7 +14,7 @@ include_once("partials/header.php");
 include_once("helpers/functions.php");
 ?>
 <div class="content">
-        <h2>Welcome, <?php get_username();?>, you have been Logged in!</h2>
+        <h2>Welcome <?php get_username();?>, you have been Logged in!</h2>
         <br>
         <h2>Need to Make Transactions? Click Home</h2>
     </div>

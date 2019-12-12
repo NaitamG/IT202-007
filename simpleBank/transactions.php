@@ -10,6 +10,8 @@ error_reporting(E_ALL);
 
 include_once("partials/header.php");
 include_once("helpers/functions.php");
+
+//This checks if the account is already created or not
 function checkAccount($account) {
   include 'db_connect.php';
   $query = "SELECT count(*) AS t FROM Transactions WHERE AccountSource = :acct OR AccountDest = :acct";
@@ -21,6 +23,7 @@ function checkAccount($account) {
   return $numOfAcct == 0;
 }
 
+//This makes a new account 
 function userToAccount($account) {
   include 'db_connect.php';
   $user_id = $_SESSION['user']['id'];
@@ -29,6 +32,26 @@ function userToAccount($account) {
   $r = $s->execute(array(":account"=>$account, ":user_id"=> $user_id));
   return $r;
 }
+
+//This will delete the account that was created
+function deleteAccount($account) {
+  include 'db_connect.php';
+  $query = "DELETE FROM accounts WHERE accountNumber = :acct";
+  $s = $db->prepare($query);
+  $r = $s->execute(array(":acct"=>$account));
+  return $r;
+{
+
+//This will delete the account transactions
+
+function deleteAcctTransactions($account) {
+  include 'db_connect.php';
+  $query = "DELETE FROM Transactions WHERE AccountSource = :acct AND AccountDest = :acct";
+  $s = $db->prepare($query);
+  $res = $s->execute(array(":acct"=>$account));
+  return $res;
+}
+//This does the deposit, withdraw, and transfer actions for the user
 function do_bank_action($account1, $account2, $amountChange, $type){
 	include 'db_connect.php';
   //getting the total of the first account
@@ -47,6 +70,7 @@ function do_bank_action($account1, $account2, $amountChange, $type){
   $r2 = $s2->execute(array(":a2total"=>$amountChange));
   $result_total_2 = $s2->fetch(PDO::FETCH_ASSOC);
 	$a2total = $result_total_2["total"];
+ 
  if(!$result_total_2) {
    $a2total = 0;
  }
@@ -67,8 +91,8 @@ function do_bank_action($account1, $account2, $amountChange, $type){
 	$stmt->bindValue(":type", $type);
 	$stmt->bindValue(":a2total", $a2total);
 	$result = $stmt->execute();
-	echo var_export($result, true);
-	echo var_export($stmt->errorInfo(), true);
+	//echo var_export($result, true);
+	//echo var_export($stmt->errorInfo(), true);
 	return $result;
 }
 ?>
@@ -151,6 +175,7 @@ if(isset($_POST['type']) && isset($_POST['account1']) && isset($_POST['amount'])
        do_bank_action("000000000000", $_POST['account1'], ($amount * -1), $type);
        if(userToAccount($_POST['account1'])) {
          echo "Succesfully Created the Account!";
+         echo " You have $" . $amount . " in this account";
        }
        
        else {
@@ -161,6 +186,11 @@ if(isset($_POST['type']) && isset($_POST['account1']) && isset($_POST['amount'])
        echo "Pick a new Account.";
      }
      break;
+    case 'deleteAccount':
+      if (checkAccount($_POST['account1'])) {
+        
+      }
+      
 	}
 }
 ?>
