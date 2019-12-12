@@ -33,12 +33,12 @@ if ($_SESSION['xrole'] != 'user')
 }
 </script>
 </head>
-<body bgcolor='#333333'>
+<body bgcolor='#999999'>
 <br><br><br><br><br><br><br><br>
 <form action='deposit_write.php' method='post'  name='s' onsubmit='return validated()';>
 <table width="50%" border="0" align="center" cellpadding="2" cellspacing="0" bgcolor="#000000">
   <tr align="center"> 
-    <td colspan="3"><font color="#00FF00" size="1" face="verdana">Welcome to your Banking System!</font></td>
+    <td colspan="3"><font color="#7FDBFF" size="1" face="verdana">Welcome to your Banking System!</font></td>
   </tr>
   <tr> 
     <td width="20%">&nbsp;</td>
@@ -47,8 +47,8 @@ if ($_SESSION['xrole'] != 'user')
   </tr>
   <tr> 
     <td>&nbsp;</td>
-      <td align="center"><font color="#00FF00" size="1" face="verdana">Account Number</font><br>
-     <font color="#00FF00" size="2" face="arial"><b><?php echo"$xacct"; ?></b></font><br> </td>
+      <td align="center"><font color="#7FDBFF" size="1" face="verdana">Account Number</font><br>
+     <font color="#7FDBFF" size="2" face="arial"><b><?php echo"$xacct"; ?></b></font><br> </td>
     <td>
 	<?php	
 			$day=date("j M Y");
@@ -66,7 +66,7 @@ if ($_SESSION['xrole'] != 'user')
   <tr> 
     <td>&nbsp;</td>
     <td align="center">
-      <font color="#00FF00" size="2" face="arial"><b>$ </b></font><input type='text' name='depos' size=30 maxlength=10>
+      <font color="#7FDBFF" size="2" face="arial"><b>$ </b></font><input type='text' name='depos' size=30 maxlength=10>
 	  </td>
     <td>&nbsp;</td>
   </tr>

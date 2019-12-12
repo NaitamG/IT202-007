@@ -1,5 +1,5 @@
 <html>
-<body bgcolor='#333333'>
+<body bgcolor='#999999'>
 <?php
 session_start();
 if ($_SESSION['xrole'] != 'user')

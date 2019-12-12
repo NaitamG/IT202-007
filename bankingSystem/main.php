@@ -25,12 +25,12 @@ session_destroy();
 </script>
 </head>
 
-<body bgcolor='#333333'>
+<body bgcolor='#999999'>
 <br><br><br><br><br><br><br><br>
-<form action='login.php' method='post' name='s' onsubmit='return validated()';>
+<form action='login.php' method='POST' name='s' onsubmit='return validated()';>
 <table width="50%" border="0" align="center" cellpadding="2" cellspacing="0" bgcolor="#000000">
   <tr align="center"> 
-    <td colspan="3"><font color="#7FDBFF" size="5" face="verdana">Simple Bank!</font></td>
+    <td colspan="3"><font color="#00FF00" size="1" face="verdana">Simple Bank!</font></td>
   </tr>
   <tr> 
     <td width="20%">&nbsp;</td>
@@ -39,14 +39,14 @@ session_destroy();
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#7FDBFF" size="2" face="verdana">Account No.</font><br>
-	<input type='text' name='acct' placeholder='000-000-0000' size=30 maxlength=20></td>
+    <td align="center"><font color="#00FF00" size="1" face="verdana">Account No.</font><br>
+	<input type='text' name='acct' size=30 maxlength=20></td>
     <td>&nbsp;</td>
   </tr>
   <tr> 
     <td>&nbsp;</td>
-    <td align="center"><font color="#7FDBFF" size="2" face="verdana">Password</font><br>
-	<input type='password' name='pword' placeholder='Password' size=30 maxlength=10></td>
+    <td align="center"><font color="#00FF00" size="1" face="verdana">Password</font><br>
+	<input type='password' name='pword' size=30 maxlength=10></td>
     <td>&nbsp;</td>
   </tr>
   <tr> 
@@ -57,8 +57,8 @@ session_destroy();
   </tr>
   <tr> 
     <td>&nbsp;</td>
-      <td align="center"><font color="#7FDBFF" size="2" face="verdana"><a href='register.php'><font color='#7FDBFF'>
-     Register here </font></a></font></td>
+      <td align="center"><font color="#00FF00" size="1" face="verdana"><a href='register.php'><font color='#00FF00'>&lt;&lt; 
+     Register here &gt;&gt;</font></a></font></td>
     <td>&nbsp;</td>
   </tr>
 </table></form>

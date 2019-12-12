@@ -26,7 +26,7 @@ if ($_SESSION['xrole'] != 'user')
 }
 </script>
 </head>
-<body bgcolor='#333333'>
+<body bgcolor='#999999'>
 <br><br><br><br><br><br><br><br>
 <form action='transfer2.php' method='post'  name='s' onsubmit='return validated()';>
   <table width="50%" border="0" align="center" cellpadding="2" cellspacing="0" bgcolor="#000000">

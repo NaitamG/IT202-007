@@ -46,7 +46,7 @@ while ($row = mysql_fetch_array($result))  {
 }
 </script>
 </head>
-<body bgcolor='#333333'>
+<body bgcolor='#999999'>
 <br><br><br><br><br><br><br><br>
 <form action='withdrawal_write.php' method='post'  name='s' onsubmit='return validated()';>
 <table width="50%" border="0" align="center" cellpadding="2" cellspacing="0" bgcolor="#000000">

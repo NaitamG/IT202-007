@@ -9,7 +9,7 @@ if ($_SESSION['xrole'] != 'user')
 <html>
 <head>
 </head>
-<body bgcolor='#333333'>
+<body bgcolor='#999999'>
 <br><br><br><br>
 <table width="50%" border="0" align="center" cellpadding="2" cellspacing="0" bgcolor="#000000">
   <tr align="center"> 

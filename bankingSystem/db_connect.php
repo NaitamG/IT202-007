@@ -1,8 +1,17 @@
 <?php
+$warning = " ";
 
-require('config.php');
-$conn = mysql_connect($hostname, $username, $password)
-	or die ("Could not connect to mysql");
+include('config.php');
 
-mysql_select_db($database);
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+ini_set('display_errors', 1);
+
+$db = mysqli_connect($hostname, $username, $password, $database);
+
+if(mysqli_connect_errno()){
+    echo "Failed to connect to MySQL" . mysqli_connect_error();
+
+    exit();
+}
 ?>
+

@@ -38,7 +38,7 @@ if ($_SESSION['xrole'] != 'user')
 }
 </script>
 </head>
-<body bgcolor='#333333'>
+<body bgcolor='#999999'>
 <br><br><br><br><br><br>
 <?php
 

@@ -44,12 +44,12 @@
 			}
 }
 </script>
-<body bgcolor='#333333'>
+<body bgcolor='#999999'>
 <br><br><br><br><br><br><br><br>
 <form action='register_write.php' method='post'  name='s' onsubmit='return validated()';>
   <table width="50%" border="0" align="center" cellpadding="2" cellspacing="0" bgcolor="#000000">
     <tr align="center"> 
-      <td colspan="3"><font color="#7FDBFF" size="5" face="verdana">Register Page</font></td>
+      <td colspan="3"><font color="#00FF00" size="1" face="verdana">Welcome to your Banking System!</font></td>
     </tr>
     <tr> 
       <td align="right">&nbsp;</td>
@@ -57,29 +57,29 @@
       <td>&nbsp;</td>
     </tr>
     <tr> 
-      <td width="22%" align="right"><font color="#7FDBFF" size="2" face="verdana">Identity Card </font></td>
-      <td width="4%" align="center"><font color="#7FDBFF" size="2" face="verdana">:</font></td>
-      <td width="74%"><input type='text' placeholder='Card Number (000-000-000-000-0000)' name='card' size=30 maxlength=30></td>
+      <td width="22%" align="right"><font color="#00FF00" size="1" face="verdana">Identity Card </font></td>
+      <td width="4%" align="center"><font color="#00FF00" size="1" face="verdana">:</font></td>
+      <td width="74%"><input type='text' name='card' size=30 maxlength=30></td>
     </tr>
     <tr> 
-      <td align="right"><font color="#7FDBFF" size="2" face="verdana">Full Name</font></td>
-      <td align="center"><font color="#7FDBFF" size="2" face="verdana">:</font></td>
-      <td><input type='text' placeholder='Name' name='name' size=30 maxlength=30></td>
+      <td align="right"><font color="#00FF00" size="1" face="verdana">Full Name</font></td>
+      <td align="center"><font color="#00FF00" size="1" face="verdana">:</font></td>
+      <td><input type='text' name='name' size=30 maxlength=30></td>
     </tr>
     <tr> 
-      <td align="right">PP<font color="#7FDBFF" size="2" face="verdana">Password</font></td>
-      <td align="center"><font color="#7FDBFF" size="2" face="verdana">:</font></td>
-      <td><input type='password' placeholder='Password' name='pword' size=30 maxlength=10> <font color="#7FDBFF" size="2" face="verdana">max 10 digit</font> </td>
+      <td align="right">PP<font color="#00FF00" size="1" face="verdana">Password</font></td>
+      <td align="center"><font color="#00FF00" size="1" face="verdana">:</font></td>
+      <td><input type='password' name='pword' size=30 maxlength=10> <font color="#00FF00" size="1" face="verdana">max 10 digit</font> </td>
     </tr>
     <tr> 
-      <td align="right"><font color="#7FDBFF" size="2" face="verdana">Re-Enter Password </font></td>
-      <td align="center"><font color="#7FDBFF" size="2" face="verdana">:</font></td>
-      <td><input type='password' placeholder='Confirm Password' name='pword2' size=30 maxlength=10> <font color="#7FDBFF" size="2" face="verdana">max 10 digit</font></td>
+      <td align="right"><font color="#00FF00" size="1" face="verdana">Re-Enter Password </font></td>
+      <td align="center"><font color="#00FF00" size="1" face="verdana">:</font></td>
+      <td><input type='password' name='pword2' size=30 maxlength=10> <font color="#00FF00" size="1" face="verdana">max 10 digit</font></td>
     </tr>
     <tr> 
-      <td align="right"><font color="#7FDBFF" size="2" face="verdana">Deposit ($)</font></td>
-      <td align="center"><font color="#7FDBFF" size="2" face="verdana">:</font></td>
-      <td><input type='text' placeholder='Amount' name='depo' size=20 maxlength=10> <font color="#7FDBFF" size="2" face="verdana">min $200</font> </td>
+      <td align="right"><font color="#00FF00" size="1" face="verdana">Deposit ($)</font></td>
+      <td align="center"><font color="#00FF00" size="1" face="verdana">:</font></td>
+      <td><input type='text' name='depo' size=20 maxlength=10> <font color="#00FF00" size="1" face="verdana">min $200</font> </td>
     </tr>
     <tr> 
       <td align="right">&nbsp;</td>
@@ -90,7 +90,7 @@
       <td> 
         <?php	
 			$day=date("j M Y");
-			$time=date( "g:i:sa");
+			$time=date( "H:i:s");
 			echo "<input type='hidden' name='day' value='$day'>";
 			echo "<input type='hidden' name='time' value='$time'>";
 			?>
