@@ -1,15 +1,55 @@
 <?php
+session_start();
 ini_set('display_errors',1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-function do_bank_action($account1, $account2, $amountChange, $type){
+/*if(!isset($_SESSION['user'])) {
+  header("Location: login.php");
+}*/
 
-	require("config.php");
-	$conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
-	$db = new PDO($conn_string, $username, $password);
-	//$a1total = "SELECT NVL(SUM(Total), 0) FROM `Transactions` WHERE AccountSource = 123;
-	//$a2total = 0;//TODO get total of account 2
+include_once("partials/header.php");
+include_once("helpers/functions.php");
+function checkAccount($account) {
+  include 'db_connect.php';
+  $query = "SELECT count(*) AS t FROM Transactions WHERE AccountSource = :acct OR AccountDest = :acct";
+  $s = $db->prepare($query);
+  $r = $s->execute(array(":acct"=>$account));
+  $r= $s->fetch(PDO::FETCH_ASSOC);
+  $numOfAcct = $r['t'];
+  
+  return $numOfAcct == 0;
+}
+
+function userToAccount($account) {
+  include 'db_connect.php';
+  $user_id = $_SESSION['user']['id'];
+  $query = "INSERT INTO `accounts`(`user_id`, `accountNumber`) VALUES (:user_id, :account)";
+  $s = $db->prepare($query);
+  $r = $s->execute(array(":account"=>$account, ":user_id"=> $user_id));
+  return $r;
+}
+function do_bank_action($account1, $account2, $amountChange, $type){
+	include 'db_connect.php';
+  //getting the total of the first account
+  $query_total_1 = "SELECT SUM (NVL(Amount, 0)) as total FROM `Transactions` WHERE AccountSource = :a1total";
+  $s1 = $db->prepare($query_total_1);
+  $r1 = $s1->execute(array(":a1total"=>$amountChange));
+  $result_total_1 = $s1->fetch(PDO::FETCH_ASSOC);
+	$a1total = $result_total_1["total"];
+ // firgure out the total amount in the transaction table
+ if(!$result_total_1) {
+   $a1total = 0;
+ }
+  //getting the total of the first account
+  $query_total_2 = "SELECT SUM (NVL(Amount, 0)) as total FROM `Transactions` WHERE AccountSource = :a2total";
+  $s2 = $db->prepare($query_total_2);
+  $r2 = $s2->execute(array(":a2total"=>$amountChange));
+  $result_total_2 = $s2->fetch(PDO::FETCH_ASSOC);
+	$a2total = $result_total_2["total"];
+ if(!$result_total_2) {
+   $a2total = 0;
+ }
 	$query = "INSERT INTO `Transactions` (`AccountSource`, `AccountDest`, `Amount`, `Type`, `Total`) 
 	VALUES(:p1a1, :p1a2, :p1change, :type, :a1total), 
 			(:p2a1, :p2a2, :p2change, :type, :a2total)";
@@ -20,7 +60,7 @@ function do_bank_action($account1, $account2, $amountChange, $type){
 	$stmt->bindValue(":p1change", $amountChange);
 	$stmt->bindValue(":type", $type);
 	$stmt->bindValue(":a1total", $a1total);
-	//flip data for other half of transaction`
+	//flip data for other half of transaction
 	$stmt->bindValue(":p2a1", $account2);
 	$stmt->bindValue(":p2a2", $account1);
 	$stmt->bindValue(":p2change", ($amountChange*-1));
@@ -32,61 +72,65 @@ function do_bank_action($account1, $account2, $amountChange, $type){
 	return $result;
 }
 ?>
-<!DOCTYPE html>
 <html>
-<head>
-</head>
 
-<body>
-<div class="container">   
-  <h2>
-    Account Summary
-  </h2>
-</div>
 <style>
-  body
-    {
-      margin: 8px;
-      font-family: Arial;
-      font-size: 16px;
-      background-color: #c8c3cc;
-    }
-  h2
-    {
+html {
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+  form {border :3px solid red ;
+      border-style: solid;
+      border-color: #1F7ED2 ;
+      width:300px;
+      margin:auto;
+      overflow:hidden; 
+      padding : 10px;  
+      border-radius:auto;
       text-align: center;
-      color: #000;
-      font-family: verdana;
-      font-size: 40px;
-      display: block;
-      font-size: 2em;
-      margin-block-start: 2em;
-      margin-block-end: 3em;
-      margin-inline-start: 0px;
-      margin-inline-end: 0px;
-      font-weight: bold;
-    }
+   }
+
+input[type=submit], input[type=reset] {
+    background-color: #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+    content-align: center;
+}
+
+.header{
+    padding:20px;
+    text-align: center;
+    
+}
 </style>
-
+<body>
 <form method="POST">
-
-	<input type="text" name="account1" placeholder="12 Digits Account Number">
- 
-	<!--If our sample is a transfer show other account field-->
+	<input type="text" name="account1" placeholder="Account Number">
+	<!-- If our sample is a transfer show other account field-->
 	<?php if($_GET['type'] == 'transfer') : ?>
 	<input type="text" name="account2" placeholder="Other Account Number">
 	<?php endif; ?>
 	
 	<input type="number" name="amount" placeholder="$0.00"/>
- 
-	<input type="hidden" name="type" value="s<?php echo $_GET['type'];?>"/>
+	<input type="hidden" name="type" value="<?php echo $_GET['type'];?>"/>
 	
 	<!--Based on sample type change the submit button display-->
+  <br>
+  <br>
 	<input type="submit" value="Move Money"/>
+  <br>
+<a href='home.php'>Back</a>
 </form>
-<a href="myLoginForm.php">Back</a>
 </body>
-</html>
-
+<html>
 
 <?php
 if(isset($_POST['type']) && isset($_POST['account1']) && isset($_POST['amount'])){
@@ -100,8 +144,23 @@ if(isset($_POST['type']) && isset($_POST['account1']) && isset($_POST['amount'])
 			do_bank_action($_POST['account1'], "000000000000", ($amount * -1), $type);
 			break;
 		case 'transfer':
-			//TODO figure it out
+			do_bank_action($_POST['account1'], $_POST['account2'], ($amount * -1), $type);
 			break;
+    case 'newAccount':
+     if (checkAccount($_POST['account1'])) {
+       do_bank_action("000000000000", $_POST['account1'], ($amount * -1), $type);
+       if(userToAccount($_POST['account1'])) {
+         echo "Succesfully Created the Account!";
+       }
+       
+       else {
+         echo "Something went wrong.";
+       }
+     }
+     else {
+       echo "Pick a new Account.";
+     }
+     break;
 	}
 }
 ?>
