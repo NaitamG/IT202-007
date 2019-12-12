@@ -188,7 +188,9 @@ if(isset($_POST['type']) && isset($_POST['account1']) && isset($_POST['amount'])
      break;
     case 'deleteAccount':
       if (checkAccount($_POST['account1'])) {
-        
+        function deleteAcctTransactions($account);
+        function deleteAccount($account);
+        break;
       }
       
 	}
