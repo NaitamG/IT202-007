@@ -23,6 +23,35 @@ function checkAccount($account) {
   return $numOfAcct == 0;
 }
 
+//This will print all the accounts of the user
+/*function accountsCreated($account) {
+  include 'db_connect.php';
+  $query = "SELECT count(*) AS t FROM accounts WHERE user_id = :userId AND accountNumber = :acct";
+  $s = $db->prepare($query);
+  $r = $s->execute(array(":acct"=>$account, ";userId"=> $user_id));
+  $r= $s->fetch(PDO::FETCH_ASSOC);
+  $row = $r['t'];
+  if($row > 0) {
+    while($row = $r['t']) {
+      echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["accountNumber"] .;
+    }
+  }
+}
+
+//This will print all transaction history
+function transactionHistory($account) {
+  include 'db_connect.php';
+  $query = "SELECT count(*) AS t FROM accounts WHERE user_id = :userId AND accountNumber = :acct";
+  $s = $db->prepare($query);
+  $r = $s->execute(array(":acct"=>$account, ";userId"=> $user_id));
+  $r= $s->fetch(PDO::FETCH_ASSOC);
+  $row = $r['t'];
+  if($row > 0) {
+    while($row = $r['t']) {
+      echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["accountNumber"] .;
+    }
+  }
+}*/
 //This makes a new account 
 function userToAccount($account) {
   include 'db_connect.php';
@@ -34,7 +63,7 @@ function userToAccount($account) {
 }
 
 //This will delete the account that was created
-function deleteAccount($account) {
+/*function deleteAccount($account) {
   include 'db_connect.php';
   $query = "DELETE FROM accounts WHERE accountNumber = :acct";
   $s = $db->prepare($query);
@@ -50,7 +79,8 @@ function deleteAcctTransactions($account) {
   $s = $db->prepare($query);
   $res = $s->execute(array(":acct"=>$account));
   return $res;
-}
+}*/
+
 //This does the deposit, withdraw, and transfer actions for the user
 function do_bank_action($account1, $account2, $amountChange, $type){
 	include 'db_connect.php';
@@ -186,13 +216,23 @@ if(isset($_POST['type']) && isset($_POST['account1']) && isset($_POST['amount'])
        echo "Pick a new Account.";
      }
      break;
-    case 'deleteAccount':
-      if (checkAccount($_POST['account1'])) {
+    /*case 'deleteAccount':
+      if (!checkAccount($_POST['account1'])) {
+        do_bank_action("000000000000", $_POST['account1'], ($amount * -1), $type);
+        if(){
+        
+        }
         function deleteAcctTransactions($account);
         function deleteAccount($account);
         break;
-      }
+      }*/
       
+      case 'accountsCreated':
+        accountsCreated($_POST['account1']);
+        break;
+      case 'transactionHistory':
+        transactionHistory($_POST['account1']);
+        break;
 	}
 }
 ?>

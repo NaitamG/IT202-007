@@ -19,6 +19,9 @@ include_once("helpers/functions.php");
         <h2>Choose your transaction action</h2>
         <ol>
                 <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=newAccount">Create New Account</a></li>
+                <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=deleteAccount">Delete Account</a></li>
+                <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=accountsCreated">View All Accounts</a></li>
+                <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=transactionHistory">Transaction History</a></li>
                 <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=deposit">Deposit Money</a></li>
                 <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=withdraw">Withdraw Money</a></li>
                 <li><a href="https://web.njit.edu/~ng395/IT202-007/simpleBank/transactions.php?type=transfer">Transfer Money</a></li>
