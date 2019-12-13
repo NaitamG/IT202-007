@@ -52,6 +52,7 @@ function transactionHistory($account) {
     }
   }
 }*/
+
 //This makes a new account 
 function userToAccount($account) {
   include 'db_connect.php';
@@ -70,16 +71,7 @@ function userToAccount($account) {
   $r = $s->execute(array(":acct"=>$account));
   return $r;
 {
-
-//This will delete the account transactions
-
-function deleteAcctTransactions($account) {
-  include 'db_connect.php';
-  $query = "DELETE FROM Transactions WHERE AccountSource = :acct AND AccountDest = :acct";
-  $s = $db->prepare($query);
-  $res = $s->execute(array(":acct"=>$account));
-  return $res;
-}*/
+*/
 
 //This does the deposit, withdraw, and transfer actions for the user
 function do_bank_action($account1, $account2, $amountChange, $type){
@@ -222,17 +214,16 @@ if(isset($_POST['type']) && isset($_POST['account1']) && isset($_POST['amount'])
         if(){
         
         }
-        function deleteAcctTransactions($account);
         function deleteAccount($account);
         break;
-      }*/
+      }
       
       case 'accountsCreated':
         accountsCreated($_POST['account1']);
         break;
       case 'transactionHistory':
         transactionHistory($_POST['account1']);
-        break;
+        break;*/
 	}
 }
 ?>
