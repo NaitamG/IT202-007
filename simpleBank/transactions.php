@@ -36,22 +36,18 @@ function checkAccount($account) {
       echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["accountNumber"] .;
     }
   }
-}
+}*/
 
 //This will print all transaction history
 function transactionHistory($account) {
   include 'db_connect.php';
-  $query = "SELECT count(*) AS t FROM accounts WHERE user_id = :userId AND accountNumber = :acct";
+  $query = "SELECT * FROM transactions WHERE accountNumber = :acct";
   $s = $db->prepare($query);
-  $r = $s->execute(array(":acct"=>$account, ";userId"=> $user_id));
-  $r= $s->fetch(PDO::FETCH_ASSOC);
-  $row = $r['t'];
-  if($row > 0) {
-    while($row = $r['t']) {
-      echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["accountNumber"] .;
-    }
-  }
-}*/
+  $r = $s->execute(array(":acct"=>$account));
+  $details = $s->fetch(PDO::FETCH_ASSOC);
+  return $details; //do echo var_export($details) to see data structure.
+  
+}
 
 //This makes a new account 
 function userToAccount($account) {
@@ -220,10 +216,10 @@ if(isset($_POST['type']) && isset($_POST['account1']) && isset($_POST['amount'])
       
       case 'accountsCreated':
         accountsCreated($_POST['account1']);
-        break;
+        break;*/
       case 'transactionHistory':
         transactionHistory($_POST['account1']);
-        break;*/
+        break;
 	}
 }
 ?>
